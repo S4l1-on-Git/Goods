@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ماذا فاتني؟</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+
+    :root {
+      --primary: #1f4c3b;
+      --primary-light: #2f7d57;
+      --bg: #f4f6fb;
+      --card-bg: #ffffff;
+      --dark: #222;
+      --mid: #555;
+      --accent: #c9b45e;
+      --muted: #888;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Tajawal', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #e2efe8 0, #f4f6fb 60%, #e9edf5 100%);
+      color: var(--dark);
+      line-height: 1.8;
+      padding: 1.5rem 0.5rem;
+    }
+
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .container {
+      background: var(--card-bg);
+      padding: 1.5rem 1.25rem 2rem;
+      border-radius: 18px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 2rem 2.5rem 2.5rem;
+      }
+    }
+
+    h1, h2, h3 {
+      color: var(--primary);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.05em;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+      font-size: 0.95rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(31,76,59,0.05);
+      color: var(--primary-light);
+      font-size: 0.8rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .divider {
+      width: 90px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 0.8rem auto 0;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      margin: 1.8rem 0 0.8rem;
+      position: relative;
+      padding-bottom: 0.4rem;
+    }
+
+    h2::after {
+      content: "";
+      position: absolute;
+      right: 50%;
+      transform: translateX(50%);
+      bottom: 0;
+      width: 70px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+      opacity: 0.6;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin: 1.2rem 0 0.4rem;
+      text-align: right;
+      color: var(--primary-light);
+    }
+
+    .section {
+      padding: 1.2rem 0 1.4rem;
+      border-bottom: 1px dashed #e0e0e0;
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    .sub-block {
+      margin-top: 0.6rem;
+      padding: 0.7rem 0.9rem;
+      border-radius: 12px;
+      background: #fafafa;
+      border: 1px solid #f0f0f0;
+    }
+
+    .label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--mid);
+      margin-bottom: 0.2rem;
+    }
+
+    .hadith {
+      font-style: italic;
+      color: #444;
+      margin: 0.4rem 0 0.7rem;
+      font-size: 0.95rem;
+    }
+
+    .miss-list {
+      list-style: none;
+      margin: 0.1rem 0 0.3rem;
+      padding: 0;
+    }
+
+    .miss-list li {
+      position: relative;
+      padding-right: 1.1rem;
+      font-size: 0.95rem;
+      color: var(--dark);
+      margin: 0.25rem 0;
+    }
+
+    .miss-list li::before {
+      content: "•";
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: var(--primary-light);
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .question {
+      margin-top: 0.45rem;
+      padding: 0.45rem 0.75rem;
+      border-right: 3px solid var(--accent);
+      background: rgba(201,180,94,0.06);
+      border-radius: 10px;
+      font-weight: 600;
+      color: #6a5a2a;
+      font-size: 0.95rem;
+    }
+
+    .overall-list {
+      list-style: none;
+      margin: 0.4rem 0 0.3rem;
+      padding: 0;
+    }
+
+    .overall-list li {
+      margin: 0.25rem 0;
+      font-size: 0.96rem;
+      color: var(--dark);
+    }
+
+    .overall-questions {
+      margin-top: 0.7rem;
+      padding: 0.6rem 0.9rem;
+      border-radius: 14px;
+      background: #f9f5e9;
+      border: 1px solid rgba(201,180,94,0.35);
+      font-size: 0.96rem;
+      color: #5b4b22;
+    }
+
+    .overall-questions p {
+      margin: 0.2rem 0;
+    }
+
+    .overall-questions strong {
+      color: #3a2f13;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 1.3rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="container">
+      <div class="header">
+        <div class="badge">مشروع تذكيري عن الصلاة</div>
+        <h1>ماذا فَاتَنِي؟</h1>
+        <div class="divider"></div>
+        <p class="subtitle">
+          رحلةٌ مع اليومِ كلِّه من الفجر إلى الوتر والجمعة، بسؤالٍ واحد يتكرَّر:
+          <strong>ماذا فَاتَنِي عندما تركتُ هذه الصلاة أو سُنَّتها؟</strong>
+        </p>
+      </div>
+
+      <!-- الفجر -->
+      <section class="section" id="fajr">
+        <h2>أوّلًا: الفجر</h2>
+
+        <h3>١) سُنَّةُ الفجر</h3>
+        <div class="sub-block">
+          <div class="label">الحديث:</div>
+          <p class="hadith">«رَكْعَتَا الفَجْرِ خَيْرٌ مِنَ الدُّنْيَا وَمَا فِيهَا».</p>
+          <div class="label">ماذا فاتني إذا تركتُها؟</div>
+          <ul class="miss-list">
+            <li>فاتني عملٌ قصير، ثوابُه أعظمُ من كُلِّ ما في الدُّنيا من مالٍ، وراحةٍ، وشهوات.</li>
+            <li>فاتتني سُنَّةٌ كان النبيُّ ﷺ لا يتركها سفرًا ولا حَضَرًا.</li>
+            <li>آثَرتُ دقائقَ نومٍ أو لَهْوٍ على ما هو خيرٌ من الدنيا وما فيها.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي حقًّا حين خَسِرتُ ما هو خيرٌ من الدُّنيا وما فيها؟</div>
+        </div>
+
+        <h3>٢) فَرْضُ الفجر</h3>
+
+        <div class="sub-block">
+          <div class="label">أ) الفجر في جماعة</div>
+          <p class="hadith">المعنى: من صلَّى الفجرَ في جماعةٍ كُتِب له قيامُ ليلةٍ كاملة.</p>
+          <div class="label">ماذا فاتني إذا تركتُ الجماعةَ في الفجر؟</div>
+          <ul class="miss-list">
+            <li>فاتني أجرُ قيامِ ليلةٍ كاملةٍ وأنا في بيتي أو مسجدي، بعدد دقائق معدودة.</li>
+            <li>استبدلتُ أجرَ ليلةٍ من القيام، بلحظاتِ راحةٍ أو كَسَلٍ أو سهوٍ عن المسجد.</li>
+          </ul>
+          <div class="question">ماذا فَاتَنِي حين ضيَّعتُ «قيامَ ليلةٍ كاملة» من أجل بضعِ دقائق؟</div>
+        </div>
+
+        <div class="sub-block">
+          <div class="label">ب) الفجر مطلقًا</div>
+          <p class="hadith">المعنى: «مَنْ صَلَّى الفَجْرَ فَهُوَ فِي ذِمَّةِ اللهِ».</p>
+          <div class="label">ماذا فاتني إذا ضيَّعتُ الفجرَ أصلًا؟</div>
+          <ul class="miss-list">
+            <li>فاتتني ذِمَّةُ الله، وحِفظُه، وكِفالتهُ لي في يومي.</li>
+            <li>خرجتُ إلى يومي بلا حِراسةٍ من الله، وبلا عهْدٍ ولا أمانٍ منه عزَّ وجلّ.</li>
+            <li>عرَّضتُ نفسي ومَعيشتي وخُطواتي في ذلك اليوم لِلضَّعف والضَّياع، باختياري أنا.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما اخترتُ أن أخرجَ من بيتي بلا أن أكونَ في ذِمَّةِ الله؟</div>
+        </div>
+      </section>
+
+      <!-- الضحى -->
+      <section class="section" id="duha">
+        <h2>ثانيًا: صلاةُ الضُّحى</h2>
+        <div class="sub-block">
+          <p class="hadith">من فضائلها أنَّها صدقةٌ عن كلِّ مفصلٍ من مفاصل ابنِ آدم، وأنها من صلاة الأوَّابِين.</p>
+          <div class="label">ماذا فاتني إذا تركتُ الضحى؟</div>
+          <ul class="miss-list">
+            <li>فاتتني صلاةٌ يسيرةٌ تمثِّل شُكرًا عمليًّا على نِعَم المفاصل والجسد في ذلك اليوم.</li>
+            <li>فاتتني درجة الأوَّابين، والرِّقَّةُ الخاصَّة في القلب لمن يحافظ عليها.</li>
+            <li>فاتني بابٌ عظيمٌ من أبواب الرزق والتيسير وفتح الأبواب، كان يمكن أن يُفتَح لي بركعتين أو أكثر.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما بَخِلتُ على نفسي بركعتينِ شُكرًا على جسدي ونِعَمي؟</div>
+        </div>
+      </section>
+
+      <!-- الظهر -->
+      <section class="section" id="dhuhr">
+        <h2>ثالثًا: حِزمة الظُّهر</h2>
+
+        <h3>١) أربعُ رَكعاتٍ قبل الظُّهر (سنن)</h3>
+        <div class="sub-block">
+          <p class="hadith">ورد في فضل مَن صلَّى قبل الظُّهر أربعًا وبعدها أربعًا أنَّ الله يُحرِّمُه على النَّار.</p>
+          <div class="label">ماذا فاتني إذا لم أُصلِّ الأربعَ قبل الظُّهر؟</div>
+          <ul class="miss-list">
+            <li>فاتني سِتْرٌ وحِجابٌ بيني وبين النَّار، كلُّ ذلك في دقائق قليلة.</li>
+            <li>فاتتني سُنَّةٌ ترفعُ من درجة محبَّة الله لي؛ لأنَّها سُنَّةٌ راتبة مؤكَّدة.</li>
+            <li>دخلتُ على فريضة الظُّهر بقلبٍ أقلَّ استعدادًا وخشوعًا.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما فتحتُ على نفسي بابًا إلى النَّار، وأغلقتُ بابَ السُّترة؟</div>
+        </div>
+
+        <h3>٢) فريضةُ الظُّهر</h3>
+        <div class="sub-block">
+          <p class="hadith">هي إحدى الصلوات الخمس، من أعمدة الإسلام.</p>
+          <div class="label">ماذا فاتني إذا ضيَّعتُ الظُّهر؟</div>
+          <ul class="miss-list">
+            <li>سقطَ أحدُ أعمدةِ ديني في ذلك اليوم.</li>
+            <li>نَقَصَ أو اختلَّ أو بَطَلَ أو كادَ يَبْطُلَ أوَّلُ ما أُحاسب عليه يوم القيامة وهو الصَّلاة.</li>
+            <li>فاتتني مغفرةُ ما بين الظُّهر والفجر، وما بينها وبين العصر.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما رضيتُ أن ينهارَ عَمُودٌ من أعمدة ديني في يومي؟</div>
+        </div>
+
+        <h3>٣) ركعتان بعد الظُّهر (سنن)</h3>
+        <div class="sub-block">
+          <p class="hadith">داخلتان في السُّنن الرَّواتب التي تُبنى بها البيوت في الجنَّة.</p>
+          <div class="label">ماذا فاتني إذا لم أُصلِّ ركعتَي بعد الظُّهر؟</div>
+          <ul class="miss-list">
+            <li>نقص من نصيبي في بناء بيتٍ لي في الجنة في ذلك اليوم.</li>
+            <li>ضيَّعتُ فرصةَ جَبْرِ ما وقَع في فريضة الظُّهر من سَهوٍ أو قِلَّةِ خشوع.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما تركتُ لَبِناتٍ أُضيفُها إلى بيتي في الجنَّة؟</div>
+        </div>
+      </section>
+
+      <!-- العصر -->
+      <section class="section" id="asr">
+        <h2>رابعًا: العصر</h2>
+
+        <h3>١) النَّوافل حول العصر</h3>
+        <div class="sub-block">
+          <p class="hadith">النوافل قبل العصر ليست من الرَّواتب المؤكَّدة، لكنها من التطوُّع المحبوب.</p>
+          <div class="label">ماذا فاتني إذا تركتُ النَّوافل قبله؟</div>
+          <ul class="miss-list">
+            <li>فاتتني زيادةُ رصيدٍ من السُّجود والرُّكوع يرفعُ درجتي في الجنة.</li>
+            <li>فاتني سِتْرٌ إضافيٌّ لنقائص الفريضة.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما تركتُ سُجودًا مجانيًّا يرفعني درجةً بعد درجة؟</div>
+        </div>
+
+        <h3>٢) فريضة العصر</h3>
+        <div class="sub-block">
+          <p class="hadith">جاء في التحذير من تضييعها: مَن فاتته صلاةُ العصر فكأنَّما وُتِرَ أهله ومالُه، وفي أثرٍ آخر: حَبِط عمله.</p>
+          <div class="label">ماذا فاتني إذا أضعتُ العصر؟</div>
+          <ul class="miss-list">
+            <li>كأنَّني خَسِرتُ أهلي ومالي في يومٍ واحد، بل أشد.</li>
+            <li>تعرَّضتُ لخطر حَبْط الأعمال، أو ذهاب ثوابِ كثيرٍ منها.</li>
+            <li>ضيَّعتُ صلاةً هي وِسْطُ النهار، وضِياعُها علامةٌ على قسوةٍ في القلب وغَفلة.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما جعلتُ نفسي في حُكمِ من خَسِرَ أهلَه ومالَه وحَبِطَ عملُه؟</div>
+        </div>
+      </section>
+
+      <!-- المغرب -->
+      <section class="section" id="maghrib">
+        <h2>خامسًا: المغرب</h2>
+
+        <h3>١) فريضة المغرب</h3>
+        <div class="sub-block">
+          <p class="hadith">صلاةٌ فاصلة بين النَّهار واللَّيل.</p>
+          <div class="label">ماذا فاتني إذا ضيَّعتُ المغرب؟</div>
+          <ul class="miss-list">
+            <li>ضيَّعتُ خِتامَ نهاري الأول وافتتاحَ ليلتي في طاعة الله.</li>
+            <li>فاتتني مغفرةُ ما بين العصر والمغرب، وما بين المغرب والعشاء.</li>
+            <li>تركتُ سهْمًا ثابتًا من الأذكار والدُّعاء بين الأذان والإقامة يضيع مع صلاةٍ عظيمة.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما تركتُ أوَّلَ ليلتي بلا وِردٍ من الصلاة والمغفرة؟</div>
+        </div>
+
+        <h3>٢) ركعتان بعد المغرب (سنن)</h3>
+        <div class="sub-block">
+          <p class="hadith">من جملة الرَّواتب الاثنتَي عشرة التي يبنى بها البيت في الجنة.</p>
+          <div class="label">ماذا فاتني إذا تركتُهما؟</div>
+          <ul class="miss-list">
+            <li>تنازلتُ عن جزءٍ من بيتٍ في الجنة من أجل دقائق دنيا.</li>
+            <li>فاتتني فرصةُ تليين قلبي بعد فريضة المغرب مباشرةً، قبل أن أنشغلَ بملهيات الليل.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما بَعْتُ حجارةَ بيتٍ في الجنة بلحظاتِ لهوٍ بعد المغرب؟</div>
+        </div>
+      </section>
+
+      <!-- العشاء -->
+      <section class="section" id="isha">
+        <h2>سادسًا: العِشاء</h2>
+
+        <h3>١) فريضة العشاء</h3>
+        <div class="sub-block">
+          <p class="hadith">من صلَّاها في جماعةٍ كان له كأنما قام نصفَ الليل.</p>
+          <div class="label">ماذا فاتني إذا ضيَّعتُ العشاء، أو ضيَّعتُ جماعتَها؟</div>
+          <ul class="miss-list">
+            <li>فاتني ثواب نصفِ ليلةٍ من القيام لو تركتُ الجماعة.</li>
+            <li>نَقَصَ عمودٌ من أعمدة ديني الخمسة.</li>
+            <li>أنهيتُ يومي على معصيةٍ وذنبٍ، بدل أن أختِمه بطاعةٍ ومغفرة.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما أغْلَقتُ يومي على معصية، وكان يمكن أن أُغلقه على مغفرة؟</div>
+        </div>
+
+        <h3>٢) ركعتان بعد العشاء (سنن)</h3>
+        <div class="sub-block">
+          <p class="hadith">من السُّنن الرَّواتب.</p>
+          <div class="label">ماذا فاتني إذا لم أُصلِّهما؟</div>
+          <ul class="miss-list">
+            <li>فات جزءٌ آخر من بناء بيتي في الجنة.</li>
+            <li>فاتتني آخرُ جرعةِ تربيةٍ للقلب بعد اليوم الطويل من التقلُّب في الدُّنيا.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما نِمتُ قبل أن أُهذِّب قلبي بركعتينِ خفيفتين بعد العشاء؟</div>
+        </div>
+      </section>
+
+      <!-- الشفع والوتر -->
+      <section class="section" id="witr">
+        <h2>سابعًا: الشَّفع والوتر</h2>
+
+        <h3>١) صلاة الشَّفع</h3>
+        <div class="sub-block">
+          <p class="hadith">ركعتان (أو أكثر) قبل الوتر، فيها قيام وقراءة ودعاء.</p>
+          <div class="label">ماذا فاتني إذا لم أُصلِّ الشَّفع؟</div>
+          <ul class="miss-list">
+            <li>فاتني قيامُ ليلٍ إضافيٌّ يسيرٌ يرفعُ درجتي ويُكفِّر خطاياي.</li>
+            <li>فاتتني فرصةُ طول الوقوف بين يدي الله قبل أن أختم بالوتر.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما اختصرتُ قيامَ الليل، وكان يمكن أن أزيده بركعتينِ فقط؟</div>
+        </div>
+
+        <h3>٢) صلاة الوتر</h3>
+        <div class="sub-block">
+          <p class="hadith">سُنَّةٌ مؤكَّدة، والنبي ﷺ لم يتركها في سفرٍ ولا حضر.</p>
+          <div class="label">ماذا فاتني إذا تركتُ الوتر؟</div>
+          <ul class="miss-list">
+            <li>ختمتُ يومي بلا آخر سجدةٍ آخرةٍ بيني وبين الله في الليل.</li>
+            <li>تركتُ صلاةً هي شعارُ أهل الإيمان والقيام في الليل.</li>
+            <li>فوتُّ وقتًا عظيمًا للدعاء والقنوت ومناجاة الله وهو يدعوني أن أستغفره وأطلبه.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما نِمتُ وقلبي خالٍ من آخر وترٍ يربطني بربِّي تلك الليلة؟</div>
+        </div>
+      </section>
+
+      <!-- الجمعة -->
+      <section class="section" id="jumuah">
+        <h2>ثامنًا: صلاة الجمعة (للرِّجال)</h2>
+
+        <h3>١) السُّنن قبل الجمعة وبعدها</h3>
+        <div class="sub-block">
+          <p class="hadith">نوافل قبلية وبعدية تكثُر في يوم الجمعة.</p>
+          <div class="label">ماذا فاتني إذا لم أُصلِّ قبلها وبعدها؟</div>
+          <ul class="miss-list">
+            <li>فاتني تعظيمُ هذا اليوم العظيم بنوافل تُكثِّر حسناتي.</li>
+            <li>فاتتني أسبابُ رفع الدَّرجات ومحو الخطايا بين الجُمعتين مع كلِّ سجدةٍ.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما مرَّت الجمعةُ عليَّ بلا سجودٍ زائدٍ ولا نوافلَ تُحيي هذا اليوم؟</div>
+        </div>
+
+        <h3>٢) فريضة الجمعة</h3>
+        <div class="sub-block">
+          <p class="hadith">هي آكد من الظُّهر، وهي شعيرة عظيمة من شعائر الإسلام.</p>
+          <div class="label">ماذا فاتني إذا تركتُ الجمعة بلا عذر؟</div>
+          <ul class="miss-list">
+            <li>تعرَّض قلبي لِطَبْعٍ وخَتْمٍ بسبب الاستهانة بها.</li>
+            <li>سقط عنِّي شرفُ شهودِ اجتماع المسلمين الأسبوعيّ على الذِّكر والخطبة.</li>
+            <li>فاتتني مغفرةُ ما بين الجمعتين وزيادةُ ثلاثة أيامٍ، مع ما فيها من ساعةِ إجابةٍ للدُّعاء.</li>
+          </ul>
+          <div class="question">فَماذا فَاتَنِي عندما سُجِّلَ اسمي في الغافلين عن أعظمِ اجتماعٍ أسبوعيٍّ للمسلمين؟</div>
+        </div>
+      </section>
+
+      <!-- صورة اليوم كله -->
+      <section class="section" id="overall">
+        <h2>تاسعًا: صورة اليوم كلِّه</h2>
+        <div class="sub-block">
+          <p class="label">حين أترك:</p>
+          <ul class="overall-list">
+            <li>الخمسَ المفروضة: أسقِطُ أعمدةَ ديني، وأفسدُ أوَّلَ ما أُسأل عنه يوم القيامة وهو الصَّلاة.</li>
+            <li>السُّنن الرَّواتب الاثنتي عشرة: أتنازل عن بناءِ بيتٍ في الجنة كلَّ يوم، وعن جَبْرِ ما في الفرائض من نقائص.</li>
+            <li>الضحى: أتنازل عن شُكر عمليٍّ لجسدي كلَّ صباح، وعن درجة الأوَّابين.</li>
+            <li>الشفع والوتر: أتركُ خِتامَ ليلي، وأحرمُ نفسي من وقتِ المناجاة والقرب.</li>
+            <li>الجمعة: أعرِّض قلبي للختم والقسوة، وأقطع نفسي عن روحانيَّة الاجتماع الأسبوعيّ للمسلمين.</li>
+          </ul>
+
+          <div class="overall-questions">
+            <p><strong>فَسؤال هذا المشروع في كلِّ مَوْطن هو:</strong></p>
+            <p>ماذا فَاتَنِي حين غَلَبَني النَّومُ على الفجر؟</p>
+            <p>ماذا فَاتَنِي حين آثرتُ شاشةَ الهاتف على سُنَّة الرَّواتب؟</p>
+            <p>ماذا فَاتَنِي حين بَخِلْتُ على نفسي بركعتين من الضحى، أو بالشَّفع والوتر قبل النَّوم؟</p>
+            <p>وماذا فَاتَنِي إن كنتُ قد ضيَّعتُ مع ذلك كلِّه يومَ الجمعة؟</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</body>
+</html>
